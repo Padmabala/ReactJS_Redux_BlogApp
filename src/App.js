@@ -16,6 +16,7 @@ import { deepMerge } from 'jest-snapshot/build/utils';
 import routes from './routes/routes';
 import Home from './Pages/Home/home';
 import Authors from './Pages/Authors/authors';
+import Post from './Pages/Post/Post';
 
 
 class App extends Component {
@@ -43,7 +44,7 @@ class App extends Component {
                 <NavLink className="nav-link" activeClassName="active" to={routes.authors}>Authors</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink className="nav-link" activeClassName="active" to={routes.post}>New Post</NavLink>
+                <NavLink className="nav-link" activeClassName="active" to={routes.Post}>New Post</NavLink>
               </NavItem>
             </Nav>
           </Collapse>
@@ -51,7 +52,7 @@ class App extends Component {
         
       <Route path={routes.home} component={Home}/>
       <Route path={routes.authors} component={Authors}/>
-      <Route path={routes.author} component={Authors}/>
+      <Route path={routes.post} component={Post}/>
       
       </div>
     )
