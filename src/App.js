@@ -4,11 +4,11 @@ import {
   Navbar, 
   NavbarToggler, 
   Nav, 
-  NavItem
+  NavItem,
 } from 'reactstrap';
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
-  Route,NavLink
+  Route,NavLink,withRouter
 } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
@@ -17,6 +17,7 @@ import routes from './routes/routes';
 import Home from './Pages/Home/home';
 import Authors from './Pages/Authors/authors';
 import Post from './Pages/Post/Post';
+import AuthorsList from './Pages/AuthorsList/AuthorsList';
 
 
 class App extends Component {
@@ -27,6 +28,12 @@ class App extends Component {
  
           this.setState(
           {isNavbarOpen:!this.state.isNavbarOpen});
+  }
+  componentDidMount(){    
+    const{history,location}=this.props;
+    if(location.pathname==='/'){
+      history.push(routes.home);
+    }
   }
   render() {
     const {isNavbarOpen}=this.state;
@@ -53,10 +60,11 @@ class App extends Component {
       <Route path={routes.home} component={Home}/>
       <Route path={routes.authors} component={Authors}/>
       <Route path={routes.post} component={Post}/>
+      <Route path={routes.author} component={AuthorsList}/>
       
       </div>
     )
   }
 }
 
-export default App;
+export default withRouter(App);

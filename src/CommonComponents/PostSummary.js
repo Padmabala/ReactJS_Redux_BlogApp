@@ -4,7 +4,7 @@ import {
     Route,NavLink
   } from 'react-router-dom';
 import routes from '../routes/routes';
-import { WSA_E_NO_MORE } from 'constants';
+import ErrorScreen from '../Pages/ErrorScreen/ErrorScreen';
 const PostSummary=({
     id,
     author,
@@ -12,7 +12,12 @@ const PostSummary=({
     title,
     dateTime
 })=>{
+    
     //const post=this.props;
+    
+    //undefined.func();
+    try{
+        //undefined.func(); --- this will be caught by the try catch 
     return(
         <div className={`post-container container`}>                
           <h1>{title}</h1>
@@ -23,6 +28,10 @@ const PostSummary=({
           </NavLink>
         </div>
     )
+        }
+        catch(e){
+            return <ErrorScreen text={"Error while page load"}/>
+        }
 };
 PostSummary.propTypes={
     id:PropTypes.string.isRequired,

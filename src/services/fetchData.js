@@ -10,7 +10,6 @@ const fetchData=(route,method)=>{
         fetch(requestUrl)
         .then(response=>response.json())
         .then(data=>{
-            //console.log(data)
             resolve(data);
         })
         .catch(error=>{
@@ -20,5 +19,6 @@ const fetchData=(route,method)=>{
    
     
 };
+
 
 export default fetchData;
