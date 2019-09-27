@@ -1,8 +1,11 @@
 import React,{Component} from 'react';
 import fetchData from '../../services/fetchData';
 import { GET_AUTHORS_BY_NAME_API } from '../../constants/serverUrls';
+import AuthorSummary from '../../CommonComponents/AuthorSummary';
+import LoadingIndicator from '../../CommonComponents/LoadingIndicator';
+import ErrorBoundaryV2 from '../../HigherOrderComponents/ErrorBoundaryV2';
 
-class AuthorsList extends Component{
+class AuthorDetail extends Component{
     state={
     id:"",
     title:"",
@@ -40,13 +43,22 @@ render(){
         author="",
     }=this.state;
     return(
-        <div className={`post-container container`}>               
-         <h1>{author}</h1>
-         <p>{title}</p>
-         <p>{content}</p>
+        <div>
+            {
+                author.length!==0
+            ?
+            <AuthorSummary
+        id={id}
+        author={author}
+        title={title}
+        content={content}
+        />
+        :
+        <LoadingIndicator/>
+            }
         </div>
     )
 };
 }
 
-export default AuthorsList;
+export default ErrorBoundaryV2(AuthorDetail);

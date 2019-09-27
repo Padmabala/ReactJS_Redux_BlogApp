@@ -12,12 +12,11 @@ import {
 } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
-import { deepMerge } from 'jest-snapshot/build/utils';
 import routes from './routes/routes';
 import Home from './Pages/Home/home';
 import Authors from './Pages/Authors/authors';
 import Post from './Pages/Post/Post';
-import AuthorsList from './Pages/AuthorsList/AuthorsList';
+import AuthorDetail from './Pages/AuthorDetail/AuthorDetail';
 
 
 class App extends Component {
@@ -60,7 +59,7 @@ class App extends Component {
       <Route path={routes.home} component={Home}/>
       <Route path={routes.authors} component={Authors}/>
       <Route path={routes.post} component={Post}/>
-      <Route path={routes.author} component={AuthorsList}/>
+      <Route path={routes.author} component={AuthorDetail}/>
       
       </div>
     )
@@ -68,3 +67,4 @@ class App extends Component {
 }
 
 export default withRouter(App);
+// to be able to make the current component a HOC

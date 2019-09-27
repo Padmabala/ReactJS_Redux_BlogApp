@@ -1,11 +1,13 @@
 import React,{Component} from 'react';
-import fetchData from '../../services/fetchData';
 import { GET_AUTHORS_API } from '../../constants/serverUrls';
-import AuthorsList from '../AuthorsList/AuthorsList';
 import {
     NavLink
   } from 'react-router-dom';
 import routes from '../../routes/routes';
+import xmlHTTPRequestData from '../../services/xmlHTTPRequestData';
+import AuthorSummary from '../../CommonComponents/AuthorSummary';
+import LoadingIndicator from '../../CommonComponents/LoadingIndicator';
+import ErrorBoundaryV2 from '../../HigherOrderComponents/ErrorBoundaryV2';
 class Authors extends Component{
     state={
         authors:[]
@@ -15,7 +17,7 @@ class Authors extends Component{
     }
     loadAuthors=async()=>{
         try{
-        const authors=await fetchData(GET_AUTHORS_API,"GET");
+        const authors=await xmlHTTPRequestData(GET_AUTHORS_API,"GET");
         this.setState({authors});
         //console.log(authors);
         }
@@ -24,17 +26,27 @@ class Authors extends Component{
         }
     }
     render(){
-        const {authors}=this.state;
+        
+    //undefined.function();
+        const {authors}=this.state;        
         return(
+            <div>
+            {
+                authors.length
+                ?                
                 authors.map((author)=>{
                     return(
-                        <NavLink to={routes.author.replace(":authorName",author)}>
-                        {author}
-                        </NavLink>
+                        
+                            <AuthorSummary author={author}/>
+                        
                     )
                 })
+            :
+            <LoadingIndicator/>
+            }
+            </div>
         )
     };
 }
 
-export default Authors;
+export default ErrorBoundaryV2(Authors);

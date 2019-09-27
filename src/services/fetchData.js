@@ -15,10 +15,6 @@ const fetchData=(route,method)=>{
         .catch(error=>{
             reject(error);
         });
-    });
-   
-    
+    });    
 };
-
-
 export default fetchData;

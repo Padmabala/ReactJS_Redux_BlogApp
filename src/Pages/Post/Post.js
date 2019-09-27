@@ -3,6 +3,7 @@ import fetchData from '../../services/fetchData';
 import { GET_POST_BY_ID_Api } from '../../constants/serverUrls';
 import PostSummary from '../../CommonComponents/PostSummary';
 import LoadingIndicator from '../../CommonComponents/LoadingIndicator';
+import ErrorBoundaryV2 from '../../HigherOrderComponents/ErrorBoundaryV2';
 
 class Post extends Component{
 
@@ -30,7 +31,7 @@ componentDidMount(){
     })
     .catch(error=>{
         console.log(error);
-    })
+    });
 }
     render(){
         const {
@@ -59,4 +60,4 @@ componentDidMount(){
         )
     };
 }
-export default Post;
+export default ErrorBoundaryV2(Post);

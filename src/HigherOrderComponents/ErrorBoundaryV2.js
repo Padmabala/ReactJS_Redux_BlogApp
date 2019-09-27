@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import ErrorScreen from '../Pages/ErrorScreen/ErrorScreen';
 
-//Export home as an parameter for errorBoundaryV2
+//when u export home component, u export it as anan parameter for errorBoundaryV2
 //now after this check the inspector..u'll see a new component above home
 const ErrorBoundaryV2=ChildComponent=>{
     //Anonymous class since it'll be used immediately
