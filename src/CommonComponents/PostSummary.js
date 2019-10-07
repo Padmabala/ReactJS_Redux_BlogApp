@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import PropTypes from 'prop-types';
 import {
     Route,NavLink
@@ -12,15 +12,21 @@ const PostSummary=({
     title,
     dateTime
 })=>{
-    
+    const [defaultVariable,setDefaultVariable]=useState(false);
+    setInterval(()=>{
+        setDefaultVariable(!defaultVariable);
+    },5000);
     //const post=this.props;
     
     //undefined.func();
     try{
         //undefined.func(); --- this will be caught by the try catch 
     return(
+        
         <div className={`post-container container`}>                
+          <h1>{defaultVariable?"True":"False"}</h1>
           <h1>{title}</h1>
+          
           <p>{author}</p>
           <p>{content}</p>
           <NavLink className={`btn btn-primary`} to={routes.post.replace(":id",id)}>

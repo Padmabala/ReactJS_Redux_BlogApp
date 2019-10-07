@@ -17,4 +17,5 @@ const fetchData=(route,method)=>{
         });
     });    
 };
+
 export default fetchData;

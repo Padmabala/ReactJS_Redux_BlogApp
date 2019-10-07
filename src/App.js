@@ -17,6 +17,7 @@ import Home from './Pages/Home/home';
 import Authors from './Pages/Authors/authors';
 import Post from './Pages/Post/Post';
 import AuthorDetail from './Pages/AuthorDetail/AuthorDetail';
+import NewPost from './Pages/NewPost/NewPost';
 
 
 class App extends Component {
@@ -28,6 +29,7 @@ class App extends Component {
           this.setState(
           {isNavbarOpen:!this.state.isNavbarOpen});
   }
+
   componentDidMount(){    
     const{history,location}=this.props;
     if(location.pathname==='/'){
@@ -50,8 +52,9 @@ class App extends Component {
                 <NavLink className="nav-link" activeClassName="active" to={routes.authors}>Authors</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink className="nav-link" activeClassName="active" to={routes.Post}>New Post</NavLink>
+                <NavLink className="nav-link" activeClassName="active" to={routes.newPost}>New Post</NavLink>
               </NavItem>
+              
             </Nav>
           </Collapse>
         </Navbar>
@@ -59,8 +62,10 @@ class App extends Component {
       <Route path={routes.home} component={Home}/>
       <Route path={routes.authors} component={Authors}/>
       <Route path={routes.post} component={Post}/>
-      <Route path={routes.author} component={AuthorDetail}/>
+      <Route path={routes.newPost} component={NewPost}/>
+
       
+
       </div>
     )
   }

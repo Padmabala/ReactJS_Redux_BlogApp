@@ -3,6 +3,6 @@ const routes={
     authors:'/authors',
     author:'/author/:authorName',
     newPost:'/new-post',
-    post:'/post/:id'
+    post:'/post/:id',
 };
 export default routes;
