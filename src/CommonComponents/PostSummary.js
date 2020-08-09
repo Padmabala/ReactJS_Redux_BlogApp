@@ -21,10 +21,11 @@ const PostSummary=({
     //undefined.func();
     try{
         //undefined.func(); --- this will be caught by the try catch 
+        //<h1>{defaultVariable?"True":"False"}</h1>
     return(
         
         <div className={`post-container container`}>                
-          <h1>{defaultVariable?"True":"False"}</h1>
+          
           <h1>{title}</h1>
           
           <p>{author}</p>

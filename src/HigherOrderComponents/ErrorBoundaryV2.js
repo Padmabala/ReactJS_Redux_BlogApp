@@ -24,7 +24,7 @@ const ErrorBoundaryV2=ChildComponent=>{
             return <ChildComponent {...props}/>;
         };
     }
-};
+};  
 
 export default ErrorBoundaryV2;
 

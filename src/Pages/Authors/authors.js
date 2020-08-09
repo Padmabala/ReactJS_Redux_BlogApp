@@ -8,14 +8,18 @@ import xmlHTTPRequestData from '../../services/xmlHTTPRequestData';
 import AuthorSummary from '../../CommonComponents/AuthorSummary';
 import LoadingIndicator from '../../CommonComponents/LoadingIndicator';
 import ErrorBoundaryV2 from '../../HigherOrderComponents/ErrorBoundaryV2';
+import { bindActionCreators } from 'C:/Users/kpadm/AppData/Local/Microsoft/TypeScript/3.6/node_modules/redux';
+import {connect} from 'react-redux';
+import { get_authors } from '../../redux/actions/authorActions';
 class Authors extends Component{
     state={
         authors:[]
     };
     componentDidMount(){
-        this.loadAuthors();
+        const {loadAuthors}=this.props;
+        loadAuthors();
     }
-    loadAuthors=async()=>{
+   /*  loadAuthors=async()=>{
         try{
         const authors=await xmlHTTPRequestData(GET_AUTHORS_API,"GET");
         this.setState({authors});
@@ -24,11 +28,11 @@ class Authors extends Component{
         catch(e){
             console.log(e);
         }
-    }
+    } */
     render(){
         
     //undefined.function();
-        const {authors}=this.state;        
+        const {authors}=this.props;        
         return(
             <div>
             {
@@ -47,6 +51,23 @@ class Authors extends Component{
             </div>
         )
     };
+
+}
+const mapStateToProps=(state)=>{
+    return{
+        authors:state.authors
+    };
 }
 
-export default ErrorBoundaryV2(Authors);
+const mapDispatchToProps=(dispatch)=>{
+    return{
+        loadAuthors:bindActionCreators(get_authors,dispatch)
+    }
+}
+
+const connectHOC=connect(
+    mapStateToProps,
+    mapDispatchToProps
+    );
+
+export default connectHOC(ErrorBoundaryV2(Authors));

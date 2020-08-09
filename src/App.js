@@ -18,6 +18,10 @@ import Authors from './Pages/Authors/authors';
 import Post from './Pages/Post/Post';
 import AuthorDetail from './Pages/AuthorDetail/AuthorDetail';
 import NewPost from './Pages/NewPost/NewPost';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import { getAllPosts } from './redux/actions/postActions';
+import CountdownTimer from 'set_countdown_timer';
 
 
 class App extends Component {
@@ -31,7 +35,8 @@ class App extends Component {
   }
 
   componentDidMount(){    
-    const{history,location}=this.props;
+    const{history,location,loadPostData}=this.props;
+    loadPostData();
     if(location.pathname==='/'){
       history.push(routes.home);
     }
@@ -43,6 +48,7 @@ class App extends Component {
         <Navbar color="faded" light toggleable>
         <NavbarToggler right onClick={this.toggleNavBar}/>
           <a className="navbar-brand" href={"home"}>Blog</a>
+            
           <Collapse isOpen={isNavbarOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
@@ -58,9 +64,11 @@ class App extends Component {
             </Nav>
           </Collapse>
         </Navbar>
+        <span align="center"><CountdownTimer/></span>
         
       <Route path={routes.home} component={Home}/>
       <Route path={routes.authors} component={Authors}/>
+      <Route path={routes.author} component={AuthorDetail}/>
       <Route path={routes.post} component={Post}/>
       <Route path={routes.newPost} component={NewPost}/>
 
@@ -70,6 +78,16 @@ class App extends Component {
     )
   }
 }
+const mapStateToProps=()=>{
+  return{};
+}
 
-export default withRouter(App);
-// to be able to make the current component a HOC
+const mapDispatchToProps=dispatch=>{
+  return{
+  loadPostData:bindActionCreators(getAllPosts,dispatch)
+}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(App));
+
+
